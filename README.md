@@ -21,7 +21,7 @@ This repository contains the code to download the HPAC corpus and a set of simpl
 
 ## Installation 
 
-We recommend to create a virtualenv (`virtualenv hpac`) so these packages do not interfere with previous versions that you might have installed in your machine.
+We recommend to create a virtualenv (e.g. `virtualenv $HOME/env/hpac`) so these packages do not interfere with previous versions that you might have installed in your machine.
 
 After activating the virtualenv, execute the file `install.sh` to automatically install the mentioned dependencies (tested on Ubuntu 18.04 64 bits).
 
@@ -29,15 +29,13 @@ After activating the virtualenv, execute the file `install.sh` to automatically 
 
 The file `resources/hpac_urls.txt` contains the URLs of the fanfiction stories that we used to build HPAC.
 
-> **NOTE:** Unfortunately, some stories might be deleted by users or admins after they have been published and completed, so not being able to rebuild the 100% of the corpus is a possibility.
-
-> **NOTE:** Also, some stories might have been modified after the corpus was created. This will result in the scripts in charge to generate HPAC not being able to retrieve some samples.
-
->**NOTE:** This corpus is built in an automatic way and we have not censored the content of the stories. Some of them might contain innapropiate content (e.g. sexual related content). 
+> NOTE: Unfortunately, some stories might be deleted by users or admins after they have been published and completed, so not being able to rebuild the 100% of the corpus is a possibility.
+ NOTE: Also, some stories might have been modified after the corpus was created. This will result in the scripts in charge to generate HPAC not being able to retrieve some samples.
+NOTE: This corpus is built in an automatic way and we have not censored the content of the stories. Some of them might contain innapropiate content (e.g. sexual related content). 
 
 
 ### Crawling the data
-First, to crawl the fanfiction use the script `scraper.py`:
+First, to crawl the fan fiction use the script `scraper.py`:
 
 ```
 python scraper.py --output resources/fanfiction_texts/ --rate_limit 2 --log scraper.log --url resources/hpac_urls.txt
@@ -48,7 +46,7 @@ python scraper.py --output resources/fanfiction_texts/ --rate_limit 2 --log scra
 - `--url` The text file containing the URLs to crawl (e.g. `resources/hpac_urls.txt`).
 - `--log` The path file to log the URLs that could not be retrieved due to some issue.
 
-According to https://github.com/smilli/fanfiction, the rate limit is set in order to comply with the fanfiction.net terms of service:
+Similar to https://github.com/smilli/fanfiction, the rate limit is set in order to comply with the fanfiction.net terms of service:
 
 > E. You agree not to use or launch any automated system, including without limitation, "robots," "spiders," or "offline readers," that accesses the Website in a manner that sends more request messages to the FanFiction.Net servers in a given period of time than a human can reasonably produce in the same period by using a conventional on-line web browser.
 
@@ -63,9 +61,9 @@ python index.py --dir resources/fanfiction_texts/ --spells resources/hpac_spells
 
 - `--dir` The directory containing the fanfiction stories crawled by the script `scraper.py`.
 - `--dir_tok` The output directory where to store the tokenized stories.
-- `--spells` The file containing the spells to take into account (`hp_spells.txt`).
+- `--spells` The file containing the spells to take into account (`resources/hp_spells.txt`).
 - `--tools` The output directory where to store the `index` and the `tokenizer` needed to create HPAC.
-- `--stanford_jar` The path to `stanford-corenlp-3.8.0.jar`
+- `--stanford_jar` The path to `resources/stanford-corenlp-full-2017-06-09stanford-corenlp-3.8.0.jar`.
 
 
 ### Create HPAC
@@ -87,7 +85,7 @@ The scripts generate three files: `hpac_training_X.tsv`, `hpac_dev_X.tsv`, and `
 
 ### Checking missing elements
 
-As said before, some stories might be deleted from the fanfiction web site or updated, turning into invalid IDS for that particular story. To check how many elements are missing, you can use the script `checker.py`:
+As said before, some stories might be deleted from the fanfiction web site or updated, turning into invalid IDS for that particular story. To compare the generated corpus against the one used in the paper, you can use the script `checker.py`:
 
 ```
 python checker.py --input hpac_corpus/hpac_dev_128.tsv --labels resources/hpac_dev_labels.tsv
