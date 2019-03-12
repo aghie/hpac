@@ -270,8 +270,8 @@ class ModelHP(object):
                 
 
         x = PrettyTable()        
-        print [self.labelsi[i] for i in range(len(self.labelsi))
-                                if i in gold_output or i in predicted_output]
+#         print [self.labelsi[i] for i in range(len(self.labelsi))
+#                                 if i in gold_output or i in predicted_output]
         x.add_column("Label",  [self.labelsi[i] for i in range(len(self.labelsi))
                                 if i in gold_output or i in predicted_output])
         x.add_column("Precision", precision)
@@ -351,8 +351,6 @@ class  MajorityClassHP(ModelHP):
         self.ilabels ={l:i for i,l in enumerate(sorted(labels))}
         self.labelsi = {self.ilabels[l]: l for l in self.ilabels}
         
-        print self.ilabels, len(self.ilabels)
-        print self.labelsi, len(self.labelsi)
         
         
     def train(self, training_data, dev_data, train_conf, name_model):
@@ -477,8 +475,6 @@ class  MajorityClassHP(ModelHP):
 
 
         x = PrettyTable()        
-        print [self.labelsi[i] for i in range(len(self.labelsi))
-                                if i in gold_output or i in predicted_output]
         x.add_column("Label",  [self.labelsi[i] for i in range(len(self.labelsi))
                                 if i in gold_output or i in predicted_output])
         x.add_column("Precision", precision)
@@ -537,7 +533,7 @@ class  MajorityClassHP(ModelHP):
         
         str_output+=str(x)
         
-        print str(x)
+        #print str(x)
         labels = [self.labelsi[l] for l in predicted_output]
      #   print [self.labelsi[lid] for lid in predicted_output]
 
