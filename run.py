@@ -99,7 +99,7 @@ if args.predict:
         elif args.model == models.CNN_NAME:
             
             config.set(args.model,"timesteps", size)
-          #  config.set(args.model,"external_embeddings", embeddings)
+            config.set(args.model,"external_embeddings", embeddings)
             cnn_conf = dict(config.items("CNN"))
             m = models.CNNHP(cnn_conf,vocab=words,labels=labels, options=args)
         elif args.model == models.MLP_NAME:
@@ -107,12 +107,12 @@ if args.predict:
             mlp_conf = dict(config.items('MLP'))
             m = models.PerceptronHP(mlp_conf,vocab=words,labels=labels, options=args)
         elif args.model == models.LSTM_NAME:
-         #   config.set(args.model,"external_embeddings", embeddings)
+            config.set(args.model,"external_embeddings", embeddings)
             config.set(args.model,"timesteps", size)
             lstm_conf = dict(config.items('LSTM'))
             m = models.LSTMHP(lstm_conf,vocab=words, labels=labels, options=args)
         elif args.model == models.RNN_NAME:
-         #   config.set(args.model,"external_embeddings", embeddings)
+            config.set(args.model,"external_embeddings", embeddings)
             config.set(args.model,"timesteps", size)
             rnn_conf = dict(config.items("RNN"))
             m = models.RNNHP(rnn_conf, vocab=words, labels=labels, options=args)
