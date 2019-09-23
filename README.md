@@ -149,6 +149,10 @@ python run.py  --test hpac_corpus/hpac_test_128.tsv --conf resources/configurati
 - `--model_weights` The path to the weights file to be used by the model  (ignoring the index that indicates that was the *n* trained model in the previous step).
 - `--timestep` Number of timesteps (needed for sequential models).
 
+## Acknowledgements
+
+This work has received funding from the European Research Council (ERC), under the European Union's Horizon 2020 research and innovation programme (FASTPARSE, grant agreement No 714150).
+
 # Citation
 
 David Vilares and Carlos Gómez-Rodríguez. Harry Potter and the Action Prediction Challenge from Natural Language. 2019 Annual Conference of the North American Chapter of the Association for Computational Linguistics. To appear.
